@@ -22,23 +22,56 @@ DynamicArr* create_array(size_t initial_capacity){
     return arr;
 }
 
-void push_array(DynamicArr *arr, int item){
+int push_array(DynamicArr *arr, int item){
     if (arr == NULL){
-        return;
+        return -1;
     }
-    if (arr -> size == arr -> capacity){
-        size_t new_capacity = arr -> capacity * 2;
+    if (arr -> size >= arr -> capacity){
+        size_t new_capacity = (arr -> capacity == 0) ? 1: arr -> capacity * 2;
         int *tmp = realloc(arr -> data, new_capacity * sizeof(int));
         if (tmp == NULL){
-            return;
+            return -1;
         }
         arr -> data = tmp;
         arr -> capacity = new_capacity;
     }
     arr -> data[arr -> size] = item;
     arr -> size ++;
+    return 0;
+}
+
+void print_array(DynamicArr *arr){
+    if (arr -> size > 0){
+        printf("[");
+        for (int i = 0; i < arr -> size; i ++){
+            printf("%d", arr -> data[i]);
+            if (i < arr -> size - 1) printf(", ");
+        }
+        printf("]\n");
+        printf("(size: %zu, capacity: %zu)\n", arr -> size, arr -> capacity);
+    }
+}
+
+void destroy_array(DynamicArr *arr){
+
+}
+
+int get_array(DynamicArr* arr, size_t index){
+
+}
+
+DynamicArr* pop_array(DynamicArr *arr, size_t index){
+
 }
 
 int main (void){
+    DynamicArr *arr = create_array(64);
+
+    print_array(arr);
+    push_array(arr, 2);
+    print_array(arr);
+    push_array(arr, 10);
+    print_array(arr);
+
     return 0;
 }
