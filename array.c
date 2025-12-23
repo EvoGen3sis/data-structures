@@ -77,11 +77,16 @@ int* pop_array(DynamicArr *arr, bool rtn){
     return NULL;
 }
 
-DynamicArr* pop_unique(DynamicArr *arr, size_t index){
-    if (arr == NULL) return NULL;
-    if (index > arr -> size - 1) {
-        ////////
+int pop_unique(DynamicArr *arr, size_t index){
+    if (arr != NULL && index <= arr -> size - 1) {
+        int pop = arr -> data[index];
+        for (int i = index; i < arr -> size - 1; i ++){
+            arr -> data[i] = arr -> data[i + 1];
+        }
+        arr -> size --;
+        return pop;
     }
+    return -1;
 }
 
 int main (void){
