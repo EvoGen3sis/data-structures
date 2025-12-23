@@ -59,13 +59,12 @@ void destroy_array(DynamicArr *arr){
     }   
 }
 
-int* get_array(DynamicArr* arr, size_t index){
-    if (arr != NULL){
-        if (0 <= index < arr -> size){
-            // printf("%d", arr -> data[index]);
-            return &arr -> data[index];
-        }
+bool get_array(DynamicArr* arr, size_t index, int *out){
+    if (arr != NULL && index < arr -> size){
+        *out = arr -> data[index]; // References an external pointer
+        return true;
     }
+    return false;
 }
 
 int* pop_array(DynamicArr *arr, bool rtn){
