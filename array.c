@@ -22,6 +22,23 @@ DynamicArr* create_array(size_t initial_capacity){
     return arr;
 }
 
+void push_array(DynamicArr *arr, int item){
+    if (arr == NULL){
+        return;
+    }
+    if (arr -> size == arr -> capacity){
+        size_t new_capacity = arr -> capacity * 2;
+        int *tmp = realloc(arr -> data, new_capacity * sizeof(int));
+        if (tmp == NULL){
+            return;
+        }
+        arr -> data = tmp;
+        arr -> capacity = new_capacity;
+    }
+    arr -> data[arr -> size] = item;
+    arr -> size ++;
+}
+
 int main (void){
     return 0;
 }
