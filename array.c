@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-
+#include <stdbool.h>
 typedef struct {
     int *data; // Points to where our array is stored in memory
     size_t size; // How many elements are currently being stored (integer)
@@ -53,15 +53,35 @@ void print_array(DynamicArr *arr){
 }
 
 void destroy_array(DynamicArr *arr){
-
+    if (arr != NULL){
+        free(arr -> data);
+        free(arr);
+    }   
 }
 
-int get_array(DynamicArr* arr, size_t index){
-
+int* get_array(DynamicArr* arr, size_t index){
+    if (arr != NULL){
+        if (0 <= index < arr -> size){
+            // printf("%d", arr -> data[index]);
+            return &arr -> data[index];
+        }
+    }
 }
 
-DynamicArr* pop_array(DynamicArr *arr, size_t index){
+int* pop_array(DynamicArr *arr, bool rtn){
+    if (arr != NULL && arr -> size > 0){
+        arr -> size --;
+        if (rtn == true) return &arr -> data[arr -> size];
+            return NULL;
+    }
+    return NULL;
+}
 
+DynamicArr* pop_unique(DynamicArr *arr, size_t index){
+    if (arr == NULL) return NULL;
+    if (index > arr -> size - 1) {
+        ////////
+    }
 }
 
 int main (void){
@@ -71,6 +91,8 @@ int main (void){
     push_array(arr, 2);
     print_array(arr);
     push_array(arr, 10);
+    print_array(arr);
+    pop_array(arr, true);
     print_array(arr);
 
     return 0;
