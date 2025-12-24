@@ -14,14 +14,14 @@ DynamicArr* create_array(size_t initial_capacity);
 
 int push_array(DynamicArr *arr, int item);
 
-void print_array(const DynamicArr *arr);
+void print_array(DynamicArr *arr);
 
 void destroy_array(DynamicArr *arr);
 
-bool get_array(const DynamicArr* arr, size_t index, int *out);
+bool get_array(DynamicArr* arr, size_t index, int *out);
 
-int* pop_array(DynamicArr *arr, bool rtn);
+bool pop_array(DynamicArr *arr, int *out);
 
-int pop_unique(DynamicArr *arr, size_t index);
+bool pop_unique(DynamicArr *arr, size_t index, int *out);
 
 #endif
