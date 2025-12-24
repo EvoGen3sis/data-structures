@@ -90,14 +90,5 @@ int pop_unique(DynamicArr *arr, size_t index){
 
 int main (void){
     DynamicArr *arr = create_array(64);
-
-    print_array(arr);
-    push_array(arr, 2);
-    print_array(arr);
-    push_array(arr, 10);
-    print_array(arr);
-    pop_array(arr, true);
-    print_array(arr);
-
     return 0;
 }
