@@ -9,5 +9,17 @@ int main(void){
         print_array(test);
     }
     print_array(test);
+    size_t length = test -> size;
+    int empty[length];
+    for (size_t i = 0; i < length; i ++){
+        get_array(test, i, &empty[i]);
+    }
+    printf("[");
+    for (size_t i = 0; i < length; i ++){
+        printf("%d", empty[i]);
+        if (i < length - 1) printf(", ");
+    }
+    printf("]\n");
+    destroy_array(test);
     return 0;
 }
