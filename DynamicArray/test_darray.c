@@ -20,6 +20,10 @@ int main(void){
         if (i < length - 1) printf(", ");
     }
     printf("]\n");
+    int out[2];
+    pop_array(test, &out[0]);
+    pop_unique(test, 2, &out[1]);
+    print_array(test);
     destroy_array(test);
     return 0;
 }

@@ -21,7 +21,7 @@ int push_array(DynamicArr *arr, int item){
     if (arr == NULL){
         return -1;
     }
-    if (arr -> size >= arr -> capacity){
+    if (arr -> size == arr -> capacity){
         size_t new_capacity = (arr -> capacity == 0) ? 1: arr -> capacity * 2;
         int *tmp = realloc(arr -> data, new_capacity * sizeof(int));
         if (tmp == NULL){
@@ -64,10 +64,19 @@ bool get_array(DynamicArr* arr, size_t index, int *out){
 }
 
 bool pop_array(DynamicArr *arr, int *out){
-    if (arr == NULL || out == NULL) return false;
+    if (arr == NULL || out == NULL){
+        return false;
+    }
     if (arr -> size > 0){
         arr -> size --;
-        *out = arr -> data[arr -> size]; 
+        *out = arr -> data[arr -> size];
+        if (arr -> size <= (arr -> capacity / 4) && arr -> capacity > 8){
+            int *tmp = realloc(arr -> data, (arr -> capacity / 2) * sizeof(int));
+            if (tmp != NULL){
+                arr -> data = tmp;
+                arr -> capacity /= 2;
+            }
+        }
         return true;
     }
     return false;
